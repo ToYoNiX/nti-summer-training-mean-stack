@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Assem Mohamed | NTI/itida - Mean Stack - Tasks
+        </title>
+    </head>
+    <body>
+        <script>
+            let arr = [] 
+
+            /*
+                Write a function that removes duplicate values from an array.
+            */
+            arr = ["Assem", "Mostafa", "Ali", "Ahmed", "Ali", "Yassin"]
+
+            function removeDublicates (arr) {
+                let tmp = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (!tmp.includes(arr[i])) {
+                        tmp.push(arr[i])
+                    }
+                }
+                return tmp
+            }
+
+            console.log(removeDublicates(arr))
+            // Output -> Array(5) [ "Assem", "Mostafa", "Ali", "Ahmed", "Yassin" ]
+
+            /*
+                Return a new array that is the reverse of the input.
+                The first method reverses the original array while the second just returns a new copy of it.
+            */
+
+            // First Method
+            arr = ["Assem", "Mostafa", "Ali", "Ahmed", "Ali", "Yassin"]
+            console.log(arr.reverse())
+            // Output -> Array(6) [ "Yassin", "Ali", "Ahmed", "Ali", "Mostafa", "Assem" ]
+
+            // Second method
+            arr = ["Assem", "Mostafa", "Ali", "Ahmed", "Ali", "Yassin"]
+            function arrReverse(arr) {
+                let tmp = []
+                for (let i = arr.length - 1; i >= 0; i--) {
+                    tmp.push(arr[i])
+                }
+
+                return tmp
+            }
+
+            // Second method
+            console.log(arrReverse(arr))
+            // Output -> Array(6) [ "Yassin", "Ali", "Ahmed", "Ali", "Mostafa", "Assem" ]
+
+            /*
+                Write a function that takes an array of names and returns a new array with only names that start with "A", capitalized.
+            */
+
+            console.log(arr.filter((element) => element.startsWith("A")))
+            // Output -> Array(4) [ "Ali", "Ahmed", "Ali", "Assem" ]
+
+            /*
+                Given an array of grades, calculate the average and return a letter grade based on the score.
+            */
+
+            arr = [10, 30, 70, 2, 65]
+
+            function getLetterGrade(arr) {
+                let avg = 0
+                for (let i = 0; i < arr.length; i++) {
+                    avg += arr[i]
+                }
+                avg /= arr.length
+
+                if (avg < 50)
+                    return "F"
+                else if (avg < 60)
+                    return "D"
+                else if (avg < 70)
+                    return "C"
+                else if (avg < 80)
+                    return "B"
+                else
+                    return "A"
+            }
+
+            console.log(getLetterGrade(arr))
+            // Output -> F
+
+            /*
+                Create a function that separates numbers into even and odd arrays and returns an object.
+            */
+
+            arr = [1, 2, 3, 4, 5, 6]
+
+            function evenOddSeperation(arr) {
+                let even = []
+                let odd = []
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] % 2 == 0) {
+                        even.push(arr[i])
+                    } else {
+                        odd.push(arr[i])
+                    }
+                }
+
+                return [even, odd]
+            }
+
+            console.log(evenOddSeperation(arr))
+            // Output -> [[2, 4, 6], [1, 2, 3]]
+
+            /*
+                Create a function that checks if a password is valid:
+                    1. at least 8 characters
+                    2. includes at least one number
+                    3. includes at least one uppercase letter
+                Sources:
+                    1. https://stackoverflow.com/questions/9862761/how-to-check-if-character-is-a-letter-in-javascript
+                    2. https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+            */
+
+            function pass_check (pass) {
+                if (pass.length < 8)
+                    return "Must be at least 8 chars"
+                
+                let isNum = false, isUpper = false
+                for (let i = 0; i < pass.length; i++) {
+                    let int = parseInt(pass[i])
+                    if (int >= 0)
+                        isNum = true
+                    
+                    if (pass[i].toUpperCase() == pass[i] && pass[i] != pass[i].toLowerCase())
+                        isUpper = true
+                }
+
+                if (!isNum) {
+                    return "Must contain a number"
+                }
+
+                if (!isUpper) {
+                    return "Must contain atleast 1 upper case letter"
+                }
+
+                return "Success"
+            }
+
+            let pass = "Assem Mohamed 123"
+            console.log(pass_check(pass))
+            // Output -> Success
+
+            pass = "Assem Mohamed"
+            console.log(pass_check(pass))
+            // Output -> Must contain a number
+
+            pass = "assem"
+            console.log(pass_check(pass))
+            // Output -> Must be at least 8 chars
+
+            pass = "assem mohamed123"
+            console.log(pass_check(pass))
+            // Output -> Must be at least 8 chars
+        </script>
+    </body>
+</html>

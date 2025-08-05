@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            Assem Mohamed | NTI/itida - Mean Stack - Searching
+        </title>
+        <body>
+            <script>
+                // Array Declaration
+                var arr = []
+
+                // Iteration
+                arr = ["Assem", "Mostafa", "Ayman"]
+                for (let i = 0; i < arr.length; i++) {
+                    console.log(arr[i])
+                }
+
+                // Array Methods
+                // arr -> ["Assem", "Mostafa", "Ayman"]
+                arr.unshift("Ahmed") // Adds to the front
+                // Output -> ["Ahmed", "Assem", "Mostafa", "Ayman"]
+
+                arr.push("Omar") // Adds to the back
+                // Output -> ["Ahmed", "Assem", "Mostafa", "Ayman", "Omar"]
+
+                arr.shift() // Removes from front
+                arr.pop() // Removes from back
+
+                // arr -> ["Assem", "Mostafa", "Ayman"]
+                console.log(arr.at(2)) // Exactly like []
+                // Output -> "Ayman"
+
+                // arr -> ["Assem", "Mostafa", "Ayman"]
+                console.log(arr.concat("Mohsen")) // Adds another array on the array
+                // Output -> ["Assem", "Mostafa", "Ayman", "Mohsen"]
+
+                // arr -> ["Assem", "Mostafa", "Ayman"]
+                console.log(arr.slice(0)) // (start)
+                // Output -> ["Assem", "Mostafa", "Ayman"]
+                console.log(arr.slice(0, 2)) // (start, end)
+                // Output -> ["Assem", "Mostafa"]
+
+                // arr -> ["Assem", "Mostafa", "Ayman"]
+                console.log(arr.splice(0, 2)) // start and count, like slice but modifies the array
+                // Output -> ["Assem", "Mostafa"]
+
+                // arr -> ["Ayman"]
+                console.log(arr.splice(0, 1, "Ali")) // can also take a third parameter for modfications on the array, It replaces what is retrived with the third+ parameters
+                // Output -> ["Ayman"]
+
+///// These is the methods that we searched for
+
+                // arr -> ["Ali"]
+                console.log(arr.findIndex((element) => element == "Ali")); // Looks for the index of an element, -1 if not found
+                // Output -> 0
+
+                // arr -> ["Ali"]
+                console.log(arr.find((element) => element == "Ali")) // Looks for the first element that satisfies the function. -1 if not found
+                // Output -> Ali
+
+                // arr -> ["Ali"]
+                console.log(arr.includes("Ali")) // Return a boolean, if the element is in the array it will be true
+                // Output -> true
+
+                arr = [
+                    [
+                        ["Assem", "Mohamed"], 
+                        ["Ahmed", "Mostafa"]
+                    ], [
+                        ["Yasmin", "Yassin"], 
+                        ["Asmaa", "Fareed"]
+                    ]
+                ]
+                console.log(arr.flat()) // Returns a flatten array. concats the sub array into the main one depends on the level, by default
+                // Output ->
+                // arr = [
+                //     ["Assem", "Mohamed"], 
+                //     ["Ahmed", "Mostafa"],
+                //     ["Yasmin", "Yassin"], 
+                //     ["Asmaa", "Fareed"]
+                // ]
+                console.log(arr.flat(2)) // By two levels
+                // Output -> Array(8) [ "Assem", "Mohamed", "Ahmed", "Mostafa", "Yasmin", "Yassin", "Asmaa", "Fareed" ]
+
+                arr = [ "Assem", "Mohamed", "Ahmed", "Mostafa", "Yasmin", "Yassin", "Asmaa", "Fareed" ]
+                // arr -> [ "Assem", "Mohamed", "Ahmed", "Mostafa", "Yasmin", "Yassin", "Asmaa", "fareed" ]
+                console.log(arr.filter((element) => element.startsWith("A"))) // Filters based on the function
+                // Output -> Array(3) [ "Assem", "Ahmed", "Asmaa" ]
+
+                // arr -> [ "Assem", "Mohamed", "Ahmed", "Mostafa", "Yasmin", "Yassin", "Asmaa", "fareed" ]
+                console.log(arr.map((element) => element + "H")) // Executes the function on each element in the array
+                // Output -> Array(8) [ "AssemH", "MohamedH", "AhmedH", "MostafaH", "YasminH", "YassinH", "AsmaaH", "FareedH" ]
+            </script>
+        </body>
+    </head>
+</html>
