@@ -1,0 +1,316 @@
+-> Create a database called FacultySystemDB
+    admin> use FacultySystemDB
+    switched to db FacultySystemDB
+
+-> Create collection in mongodb
+    FacultySystemDB> db.createCollection("student")
+    { ok: 1 }
+
+-> Inserting one document
+    FacultySystemDB> db.student.insertOne({"fName": "Assem", "lName": "Mohamed", "age": 20, "faculity": {"name": "IT", "address": "october"}, "grades": [{"courseName": "Database", "grade": "A", "pass": true}], "isFired": false})
+    {
+        acknowledged: true,
+        insertedIds: { '0': ObjectId('6891e6e8cb39e4a7a889b041') }
+    }
+
+-> Inserting many documents
+    FacultySystemDB> db.student.insertMany([
+    ... 	{"fName": "Yassin", "lName": "Mostafa", "age": 18, "faculity": {"name": "IT", "address": "october"}, "grades": [{"courseName": "Database", "grade": "A", "pass": true}], "isFired": false},
+    ... 	{"fName": "Akram", "lName": "Hesham", "age": 22, "faculity": {"name": "PH", "address": "cairo"}, "grades": [{"courseName": "Physics", "grade": "F", "pass": false}], "isFired": false},
+    ... 	{"fName": "Omar", "lName": "Mohamed", "age": 21, "faculity": {"name": "Business", "address": "october"}, "grades": [{"courseName": "IS", "grade": "C", "pass": true}], "isFired": false}
+    ... ])
+    {
+    acknowledged: true,
+        insertedIds: {
+            '0': ObjectId('6891e8b8cb39e4a7a889b044'),
+            '1': ObjectId('6891e8b8cb39e4a7a889b045'),
+            '2': ObjectId('6891e8b8cb39e4a7a889b046')
+        }
+    }
+
+-> Retrive all students
+    FacultySystemDB> db.student.find()
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            age: 20,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e75bcb39e4a7a889b042'),
+            fName: 'Ahmed',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'Math', grade: 'F', pass: false } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e7bbcb39e4a7a889b043'),
+            fName: 'Yassmin',
+            lName: 'Yassin',
+            age: 19,
+            faculity: { name: 'CS', address: 'october' },
+            grades: [ { courseName: 'Physics', grade: 'B', pass: true } ],
+            isFired: true
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b044'),
+            fName: 'Yassin',
+            lName: 'Mostafa',
+            age: 18,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b045'),
+            fName: 'Akram',
+            lName: 'Hesham',
+            age: 22,
+            faculity: { name: 'PH', address: 'cairo' },
+            grades: [ { courseName: 'Physics', grade: 'F', pass: false } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b046'),
+            fName: 'Omar',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'IS', grade: 'C', pass: true } ],
+            isFired: false
+        }
+    ]
+
+-> Retrive student with specific First Name → “Ahmed”.
+    FacultySystemDB> db.student.find({"fName": "Ahmed"})
+    [
+        {
+            _id: ObjectId('6891e75bcb39e4a7a889b042'),
+            fName: 'Ahmed',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'Math', grade: 'F', pass: false } ],
+            isFired: false
+        }
+    ]
+
+-> Retrive students who his First Name=Assem, or Last Name= Mohamed.
+    FacultySystemDB> db.student.find({"fName": "Assem", "lName": "Mohamed"})
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            age: 20,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        }
+    ]
+
+-> Retrive students that their First name isn't "Ahmed".
+    FacultySystemDB> db.student.find({"fName": {$ne:"Ahmed"}})
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            age: 20,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e7bbcb39e4a7a889b043'),
+            fName: 'Yassmin',
+            lName: 'Yassin',
+            age: 19,
+            faculity: { name: 'CS', address: 'october' },
+            grades: [ { courseName: 'Physics', grade: 'B', pass: true } ],
+            isFired: true
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b044'),
+            fName: 'Yassin',
+            lName: 'Mostafa',
+            age: 18,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b045'),
+            fName: 'Akram',
+            lName: 'Hesham',
+            age: 22,
+            faculity: { name: 'PH', address: 'cairo' },
+            grades: [ { courseName: 'Physics', grade: 'F', pass: false } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b046'),
+            fName: 'Omar',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'IS', grade: 'C', pass: true } ],
+            isFired: false
+        }
+    ]
+
+-> Retrive students with Age less than 21.
+    FacultySystemDB> db.student.find({"age": {$lt:21}})
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            age: 20,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e7bbcb39e4a7a889b043'),
+            fName: 'Yassmin',
+            lName: 'Yassin',
+            age: 19,
+            faculity: { name: 'CS', address: 'october' },
+            grades: [ { courseName: 'Physics', grade: 'B', pass: true } ],
+            isFired: true
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b044'),
+            fName: 'Yassin',
+            lName: 'Mostafa',
+            age: 18,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        }
+    ]
+
+-> Retrive all fired students.
+    FacultySystemDB> db.student.find({"isFired": true})
+    [
+        {
+            _id: ObjectId('6891e7bbcb39e4a7a889b043'),
+            fName: 'Yassmin',
+            lName: 'Yassin',
+            age: 19,
+            faculity: { name: 'CS', address: 'october' },
+            grades: [ { courseName: 'Physics', grade: 'B', pass: true } ],
+            isFired: true
+        }
+    ]
+
+-> Retrive students with Age more than or equal to 21, and their faculty isn't NULL.
+    FacultySystemDB> db.student.find({$and:[{"age": {$lte:21}}, {"faculity": {$ne:null}}]})
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            age: 20,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e75bcb39e4a7a889b042'),
+            fName: 'Ahmed',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'Math', grade: 'F', pass: false } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e7bbcb39e4a7a889b043'),
+            fName: 'Yassmin',
+            lName: 'Yassin',
+            age: 19,
+            faculity: { name: 'CS', address: 'october' },
+            grades: [ { courseName: 'Physics', grade: 'B', pass: true } ],
+            isFired: true
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b044'),
+            fName: 'Yassin',
+            lName: 'Mostafa',
+            age: 18,
+            faculity: { name: 'IT', address: 'october' },
+            grades: [ { courseName: 'Database', grade: 'A', pass: true } ],
+            isFired: false
+        },
+        {
+            _id: ObjectId('6891e8b8cb39e4a7a889b046'),
+            fName: 'Omar',
+            lName: 'Mohamed',
+            age: 21,
+            faculity: { name: 'Business', address: 'october' },
+            grades: [ { courseName: 'IS', grade: 'C', pass: true } ],
+            isFired: false
+        }
+    ]
+
+-> Display student with specific First Name, and display his First Name, Last name, IsFired fields only.
+    FacultySystemDB> db.student.find({"fName": "Assem"}, {"fName": 1, "lName": 1, "isFired": 1})
+    [
+        {
+            _id: ObjectId('6891e6e8cb39e4a7a889b041'),
+            fName: 'Assem',
+            lName: 'Mohamed',
+            isFired: false
+        }
+    ]
+
+-> Update the student with specific FirstName, and change his LastName.
+    FacultySystemDB> db.student.updateOne({"fName": "Assem"}, {$set:{"age": 21}})
+    {
+        acknowledged: true,
+        insertedId: null,
+        matchedCount: 1,
+        modifiedCount: 1,
+        upsertedCount: 0
+    }
+
+-> Delete Fired students.
+    FacultySystemDB> db.student.deleteOne({"fName": "Assem"})
+    { acknowledged: true, deletedCount: 1 }
+
+-> Delete all students collection.
+    FacultySystemDB> db.student.drop()
+
+-> Delete a whole database in mongodb
+    FacultySystemDB> use FacultySystemDB
+    FacultySystemDB> db.dropDatabase()
+
+-> Create new database named: FacultySystemV2.
+    FacultySystemDB> use FacultySystemV2
+    switched to db FacultySystemV2
+
+-> Create Faculty collection that has (Faculty Name, Address).
+    FacultySystemV2> db.createCollection("faculity")
+    { ok: 1 }
+    FacultySystemV2> db.faculity.insertOne({"name": "IT", "address": "giza"})
+    {
+        acknowledged: true,
+        insertedId: ObjectId('6891f015cb39e4a7a889b047')
+    }
+
+-> Create Course collection, which has (Course Name, Final Mark).
+    FacultySystemV2> db.createCollection("course")
+    { ok: 1 }
+    FacultySystemV2> db.course.insertOne({"name": "cs101", "grade": 50})
+    {
+    acknowledged: true,
+    insertedId: ObjectId('6891f05ecb39e4a7a889b048')
+    }
