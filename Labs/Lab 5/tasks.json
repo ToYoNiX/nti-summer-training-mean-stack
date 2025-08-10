@@ -1,10 +1,1 @@
-[
-    {
-        "id": 1,
-        "content": "Finish your assignment."
-    },
-    {
-        "id": 2,
-        "content": "Install fedora (this is actually real)."
-    }
-]
+[{"content":"Finish your assignment."},{"content":"Install fedora (this is actually something I want)."},{"content":"Something"}]
