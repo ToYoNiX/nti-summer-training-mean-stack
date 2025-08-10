@@ -1,3 +1,6 @@
+const fs = require('node:fs');
+var jsonFile = fs.readFileSync('./tasks.js', 'utf-8');
+
 (function main (args) {
     if (args.length < 1) {
         console.log("No argument passed")
@@ -6,10 +9,15 @@
 
     // Get the command for the system
     const command = args[0].toLowerCase()    
+    let tasks = eval(jsonFile)
     if (command == "add") {
 
     } else if (command == "list") {
 
+        console.log("ID : Content")
+        for (let task of tasks) {
+            console.log(task.id, ":", task.content)
+        }
     } else if (command == "edit") {
 
     } else if (command == "delete") {
@@ -19,4 +27,3 @@
     }
 
 })(process.argv.slice(2))
-
