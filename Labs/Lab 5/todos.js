@@ -48,6 +48,7 @@ function main (args) {
     } else {
         console.log(`Invalid order!!!\nHere is the available orders: \n1. Add {Task Context}\n2. list\n3. Edit {Task ID} {Task Context}\n4. Delete {Task ID}`)
     }
+
 }
 
 main(process.argv.slice(2));
