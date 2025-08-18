@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ProfileCardComponent {
   name = "Assem Mohamed"
-  imgUrl = "https://avatars.githubusercontent.com/u/126217978?v=4"
-  email = "toyonix.assemmohamed.2005@gmail.com"
+  imgUrl = "https://ts1.mm.bing.net/th?id=OIP.U_VJuupQohwnzXcKMztqWgHaEo&pid=15.1"
+  email = "assem@email.com"
   title = "Backend Developer"
   isDisablesBtn1 = false
   count = 0
