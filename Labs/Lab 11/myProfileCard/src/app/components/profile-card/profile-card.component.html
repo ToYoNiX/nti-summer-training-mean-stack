@@ -1,0 +1,13 @@
+<p><img [src]="imgUrl"></p>
+
+<h3>Name: {{ name }}</h3>
+<h3>Title: {{ title }}</h3>
+<h3>Email: {{ email }}</h3>
+
+<p><button [disabled]="isDisablesBtn1" (click)="changeBtn1()">btn1</button>
+    <button (click)="addCountOne()">btn2</button> Count: {{ count }}
+</p>
+<p>
+    <input type="text" [(ngModel)]="name">
+    <input type="text" [(ngModel)]="email">
+</p>
