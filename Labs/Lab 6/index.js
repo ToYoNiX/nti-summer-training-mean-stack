@@ -114,7 +114,7 @@ const server = http.createServer((req, res) => {
       });
       req.on("end", () => {
         const postData = querystring.parse(data);
-        email = postData.email;
+        let email = postData.email;
 
         // VALIDATE EMAIL USING VALIDATOR
         res.writeHead(200, { "content-type": "text/html" });
