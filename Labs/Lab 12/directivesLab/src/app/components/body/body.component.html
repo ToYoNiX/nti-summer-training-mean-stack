@@ -1,0 +1,11 @@
+<p>Something</p>
+
+<div>
+    <h1>Laptops</h1>
+    <ul [ngSwitch]="isLaptopsAvailable()">
+        <div *ngSwitchCase="true">
+            <li appHighlightOnHover="yellow" *ngFor="let laptop of laptops">ID: {{ laptop.id }}, Name: {{ laptop.name }}, Description: {{ laptop.description }}, Price: {{ laptop.price }}EGP</li>
+        </div>
+        <li *ngSwitchCase="false">No Products are available</li>
+    </ul>
+</div>
