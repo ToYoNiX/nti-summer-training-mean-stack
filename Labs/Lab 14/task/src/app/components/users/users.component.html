@@ -1,0 +1,27 @@
+<div class="table-wrap">
+  <h1>Users</h1>
+  <table class="pro-table">
+    <tbody>
+        <tr>
+            <td><input placeholder="firstName" [(ngModel)]="student.firstName"></td>
+            <td><input placeholder="lastName" [(ngModel)]="student.lastName"></td>
+            <td><input placeholder="email" [(ngModel)]="student.email"></td>
+            <td><input placeholder="password" [(ngModel)]="student.password"></td>
+            <td><input placeholder="phone" [(ngModel)]="student.phone"></td>
+            <td><input placeholder="dateOfBirth" [(ngModel)]="student.dateOfBirth"></td>
+            <td><input placeholder="gender" [(ngModel)]="student.gender"></td>
+            <td><button (click)="addUser(student)">Add</button></td>
+        </tr>
+      <tr *ngFor="let student of students">
+        <td>{{student.firstName}}</td>
+        <td>{{student.lastName}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.password}}</td>
+        <td>{{student.phone}}</td>
+        <td>{{student.dateOfBirth}}</td>
+        <td>{{student.gender}}</td>
+        <td><button (click)="deleteUser(student._id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
